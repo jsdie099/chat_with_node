@@ -30,6 +30,14 @@
     document.querySelector("#m").value = '';
     return ;
   }
+  
+  socket.on('chat message', function(message){
+    let messages = document.createTextNode(message);
+    let messageList = document.createElement("li");
+    messageList.append(messages);
+    document.querySelector("#messages").appendChild(messageList);
+  });
+  
 </script>
   </body>
 </html>
