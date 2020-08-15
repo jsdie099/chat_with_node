@@ -26,6 +26,11 @@ var server = http.createServer(app);
 var io = require('socket.io')(server);
 io.on('connection', function(socket: Socket){
   console.log('a user connected');
+  socket.on('chat message', function(msg:string){
+    console.log('message: ' + msg);
+  });
+
+
   socket.on('disconnect', ()=>{
     console.log('user Disconnected');
   })
