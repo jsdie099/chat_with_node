@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+import { Socket } from "socket.io";
+
 var app = require('../app');
 var debug = require('debug')('chat-with-node-and-socket:server');
 var http = require('http');
@@ -20,6 +22,14 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+var io = require('socket.io')(server);
+io.on('connection', function(socket: Socket){
+  console.log('a user connected');
+  socket.on('disconnect', ()=>{
+    console.log('user Disconnected');
+  })
+});
 
 /**
  * Listen on provided port, on all network interfaces.
